@@ -1,0 +1,532 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[polish]{babel}
+\usepackage{lmodern}
+\usepackage[a4paper,margin=2.2cm]{geometry}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{url}
+\usepackage[hidelinks]{hyperref}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.6em}
+\renewcommand{\arraystretch}{1.25}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+% ===================== DO UZUPEŁNIENIA =====================
+\newcommand{\przedmiot}{Projektowanie Doświadczeń Użytkownika}
+\newcommand{\semestr}{zimowy 2026/2027}
+\newcommand{\terminzajec}{wtorek, godz. 13:15}
+\newcommand{\prowadzacy}{dr inż. Bernadetta Maleszka}
+\newcommand{\tytulzadania}{Użyteczność serwisów internetowych}
+\newcommand{\dataoddania}{19.10.2026}
+\newcommand{\autor}{Mateusz Gawłowski 264463}
+% ============================================================
+
+\begin{document}
+
+% ---------------------- Strona tytułowa ----------------------
+\begin{titlepage}
+  \centering
+  \vspace*{2cm}
+  {\Large \przedmiot\par}
+  \vspace{0.4cm}
+  {\large Semestr: \semestr\par}
+  \vspace{2.5cm}
+  {\Huge\bfseries Sprawozdanie\par}
+  \vspace{0.6cm}
+  {\LARGE \tytulzadania\par}
+  \vfill
+  \begin{tabular}{@{}ll@{}}
+    Autor: & \autor \\
+    Prowadzący: & \prowadzacy \\
+    Termin zajęć: & \terminzajec \\
+    Data oddania: & \dataoddania \\
+  \end{tabular}
+  \vspace{2cm}
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+% ---------------------- Wprowadzenie ----------------------
+\section*{Cel i zakres ćwiczenia}
+\addcontentsline{toc}{section}{Cel i zakres ćwiczenia}
+
+Celem ćwiczenia była ocena użyteczności aplikacji i serwisów internetowych z perspektywy użytkownika. Sprawozdanie obejmuje cztery zadania:
+
+\begin{enumerate}[leftmargin=*]
+  \item poznanie nowej aplikacji bez zaglądania do dokumentacji, opis jej oczekiwanej funkcjonalności, trzech przykładowych zadań oraz procesu nauki i emocji towarzyszących pracy z aplikacją;
+  \item ocenę użyteczności Serwisu Rzeczypospolitej Polskiej (\url{www.gov.pl}): wyszukanie informacji o czterech sprawach urzędowych bez zewnętrznych wyszukiwarek, ocenę według heurystyk Nielsena i porównanie wyników z odpowiedziami narzędzia generatywnej AI;
+  \item porównanie interfejsów i użyteczności serwisów trzech lotnisk (w Polsce, w Europie i poza Europą) pod kątem informacji o parkingu, wynajmie samochodu, taksówkach, komunikacji zbiorowej i udogodnieniach dla osób z niepełnosprawnościami, wraz z propozycją obiektywnych miar;
+  \item wybór tematu grupowego projektu aplikacji webowej lub mobilnej i sformułowanie jego celu.
+\end{enumerate}
+
+% =====================================================================
+\section{Zadanie 1 -- Poznawanie nowej aplikacji}
+
+\subsection{Wybór aplikacji}
+
+Obsidian to aplikacja do notatek w formacie Markdown z możliwością łączenia notatek odnośnikami. Wcześniej z niej nie korzystałem. Aplikację poznawałem bez dokumentacji, poradników i filmów, opierając się tylko na tym, co pokazuje sam interfejs.
+
+\subsection{Oczekiwana funkcjonalność}
+
+Na podstawie opisu aplikacji i ogólnej wiedzy o narzędziach do notatek spodziewałem się, że Obsidian pozwoli:
+
+\begin{enumerate}[leftmargin=*]
+  \item tworzyć, edytować i porządkować notatki w folderach;
+  \item formatować tekst (nagłówki, listy, pogrubienie, listy zadań) i oglądać efekt na bieżąco;
+  \item łączyć notatki odnośnikami i widzieć, które notatki odwołują się do bieżącej;
+  \item pokazywać powiązania między notatkami w formie grafu;
+  \item szybko wyszukiwać notatki po tytule i treści;
+  \item tworzyć notatki z szablonów (np. notatka dzienna z automatyczną datą);
+  \item działać offline na lokalnych plikach, bez zakładania konta.
+\end{enumerate}
+
+\subsection{Przykładowe zadania}
+
+\begin{enumerate}[leftmargin=*]
+  \item Notatka z zajęć. Użytkownik zakłada notatnik dla przedmiotu i zapisuje w nim notatkę z zajęć: tytuł, kluczowe pojęcia wyróżnione pogrubieniem i listę rzeczy do zrobienia, które można odhaczać. Aplikacja ma umożliwić szybkie zapisanie i uporządkowanie wiedzy w jednym miejscu.
+  \item Powiązanie wiedzy. Użytkownik łączy notatkę z zajęć z notatką tematyczną. Aplikacja ma pokazać tę relację w obie strony: z której notatki prowadzi link i które notatki odwołują się do bieżącej. Ma też przedstawić sieć powiązań w formie grafu.
+  \item Powtarzalna notatka dzienna. Użytkownik chce codziennie prowadzić krótki dziennik z tą samą strukturą (data, „Plan”, „Zrobione”). Aplikacja ma automatycznie tworzyć taką notatkę na podstawie szablonu, bez ręcznego przepisywania układu.
+\end{enumerate}
+
+\subsection{Proces nauki i emocje}
+
+Pierwszy kontakt z aplikacją wywołał u mnie mieszane uczucia. Zaraz po uruchomieniu program prosi o utworzenie lub otwarcie istenijącego „vault” bez tłumaczenia czym jest. Dopiero krótki opis pod przyciskiem wyjaśnił, że chodzi zwyczajnie o folder na dysku, w którym będą trzymane notatki. Uruchamiając aplikację po raz pierwszy ma się wrażenie, że twórcy zakładają, że użytkownik zna już ich słownictwo.
+
+Po utworzeniu notatnika zobaczyłem dość surowy interfejs: rząd ikon po lewej stronie, panel z plikami i duże puste pole edytora. Nie było samouczka ani okna powitalnego, które by mnie poprowadziło, więc zacząłem sprawdzać i analizować działanie kolejno każdego przycisku. Ikony nie mają podpisów, za to po najechaniu na nie kursorem pojawia się nazwa, i to w dużej mierze pozwoliło się zorientować, co gdzie jest. Sporo ułatwiło mi to, że część rozwiązań znałem już z innych programów. Kiedy coś działało tak, jak się spodziewałem, czułem satysfakcję i chętniej sprawdzałem kolejne rzeczy. Niestety część opcji jest domyślnie wyłączona i schowana w ustawieniach, a nazwy sekcji, na przykład „core plugins”, niewiele mówią o tym, co się w nich znajduje. W takich momentach pojawiało się zniecierpliwienie, bo miałem uczucie, że kręcę się w kółko po tych samych miejscaach.
+
+Nauka opierała się głównie na eksplorowaniu i metodzie prób i błędów. Pierwsze łatwe sukcesy zbudowały u mnie zaufanie do aplikacji i dzięki nim łatwiej było przejść przez trudniejsze momenty. Pomagały mi podpowiedzi przy ikonach, to, że efekt zmian widać od razu, oraz przyzwyczajenia przeniesione z innych narzędzi. Przeszkadzał przede wszystkim specyficzny język aplikacji, słabo widoczne bardziej zaawansowane funkcje i brak komunikatów o błędach.
+
+% =====================================================================
+\newpage
+\section{Zadanie 2 -- Ocena użyteczności serwisu www.gov.pl}
+
+Badania strona internetowa: \url{https://www.gov.pl}
+
+\subsection{Wyszukiwanie informacji o sprawach urzędowych}
+
+\subsubsection*{Struktura serwisu}
+
+Strona główna dzieli usługi według \textit{grupy odbiorców}: \textit{Obywatel}, \textit{Przedsiębiorca}, \textit{Urzędnik}, \textit{Rolnik}. W każdej kategorii są podkategorie z listami kategorii i linków konkretnych do usług. Na głównej stronie widnieje także wyszukiwarka usług, informacji lub wiadomości.
+
+Strona w pierwszej chwili przytłacza treścią i już na stronie głównej ujawnia pewne niespójności w postaci powtórzonego panelu wyboru usług dla konkretnego obywatela.
+
+\subsubsection*{Sprawa 1: Kto może uzyskać międzynarodowe prawo jazdy?}
+
+\begin{tabularx}{\textwidth}{@{}L{3.6cm}Y@{}}
+\toprule
+Ścieżka & Strona główna $\rightarrow$ \textit{Obywatel} $\rightarrow$ \textit{Kierowcy i pojazdy} $\rightarrow$ podkategoria \textit{Prawo jazdy} $\rightarrow$ „Uzyskaj międzynarodowe prawo jazdy” \\
+Kliknięcia & 3 \\
+Czas & ok. 1 min \\
+Trudność & 1/5 \\
+Odnalezione informacje & Może je uzyskać każdy posiadacz ważnego polskiego prawa jazdy (można działać przez pełnomocnika). Wniosek składa się w dowolnym starostwie powiatowym, osobiście lub pocztą. Opłata 35 zł za jeden wzór (70 zł za oba: konwencja wiedeńska i genewska). Termin do 3 dni roboczych od wpływu opłaty, często od ręki. Ważność do 3 lat. \\
+\bottomrule
+\end{tabularx}
+
+Dość intuicyjna strona usługi. Ma stałe sekcje (kto, dokumenty, opłaty, termin, podstawa prawna) i datę aktualizacji. Jedyna trudność to wybór między dwoma wzorami dokumentu: użytkownik sam musi sprawdzić na listach krajów, którą konwencję stosuje jego kraj docelowy. Brakuje prostego schematu „wybierz kraj $\rightarrow$ dostaniesz właściwy wzór”. Drobna uwaga: lista usług „Prawo jazdy” jest powielona w dwóch kategoriach katalogu.
+
+\subsubsection*{Sprawa 2: Jak wyrobić kartę EKUZ?}
+
+\begin{tabularx}{\textwidth}{@{}L{3.6cm}Y@{}}
+\toprule
+Ścieżka & Strona główna $\rightarrow$ \textit{Obywatel} $\rightarrow$ \textit{Wyjazdy i wypoczynek} $\rightarrow$ \textit{Ubezpieczenie} $\rightarrow$ „Uzyskaj Europejską Kartę Ubezpieczenia Zdrowotnego (EKUZ) -- usługa online” \\
+Kliknięcia & docelowo 3, uwzględniając przeszukiwanie strony kilkakrotnie więcej \\
+Czas & ok. 5 min \\
+Trudność & 3/5 \\
+Odnalezione informacje & Karta jest bezpłatna dla osób ubezpieczonych w NFZ (oraz nieubezpieczonych z prawem do świadczeń). Wniosek: przez Internetowe Konto Pacjenta / aplikację mojeIKP, w oddziale NFZ, mailem lub pocztą. Od 1.01.2026 wnioski o EKUZ na pobyt czasowy składa się elektronicznie tylko przez IKP/mojeIKP (nie przez ePUAP). Czas: do 5 dni (do 10 dni w czasie wakacji i ferii). Ważność zależy od tytułu ubezpieczenia, np. 3 lata dla pracujących, 18 miesięcy dla studentów, 20 lat dla emerytów. \\
+\bottomrule
+\end{tabularx}
+
+EKUZ to karta ubezpieczenia zdrowotnego, więc intuicyjnie szuka się jej w kategorii \textit{Zdrowie i ubezpieczenie społeczne $\rightarrow$ Leczenie}. Tam jej nie ma: lista usług obejmuje m.in. e-receptę i IKP, ale nie EKUZ. Serwis kategoryzuje według sytuacji życiowej („wyjazd”), a nie według tematu („zdrowie”), i nie stosuje odsyłaczy między kategoriami.
+
+\subsubsection*{Sprawa 3: Ile wynosi dofinansowanie do instalacji fotowoltaicznej?}
+
+\begin{tabularx}{\textwidth}{@{}L{3.6cm}Y@{}}
+\toprule
+Ścieżka & Strona główna $\rightarrow$ \textit{Obywatel} $\rightarrow$ \textit{Dotacje i pomoc finansowa} $\rightarrow$ „Skorzystaj z programu »Mój prąd«” \\
+Kliknięcia & 3 \\
+Czas & ok. 2 min \\
+Trudność dotarcia & 1/5 \\
+Odnalezione informacje & Zwrot do 50\% kosztów kwalifikowanych, łącznie do 20 500 zł na jedno przedsięwzięcie. \\
+Problem & Termin składania wniosków w programie „Mój prąd” skończył się w 2022 roku. Mimo to na gov.pl nadal widnieje aktywny przycisk „Złóż wniosek”. \\
+\bottomrule
+\end{tabularx}
+
+Katalog prowadzi do odpowiedzi dość szybko. Treść jest jednak nieaktualna i nie ma ostrzeżenia o zakończonym naborze. Użytkownik, który nie sprawdzi daty aktualizacji, otrzyma błędną informację. Dodatkowo w nazwach usług nie pada słowo „fotowoltaika”: trzeba wiedzieć, że chodzi o konkretny program „Mój prąd”.
+
+\subsubsection*{Sprawa 4: Ile wynoszą maksymalne stawki opłat za odbiór odpadów komunalnych?}
+
+\begin{tabularx}{\textwidth}{@{}L{3.6cm}Y@{}}
+\toprule
+Ścieżka & -- \\
+Kliknięcia & -- \\
+Czas & ok. 10--20 min \\
+Trudność & 5/5, informacji nie znaleziono w gov.pl \\
+Odpowiedź (spoza gov.pl, z tekstu ustawy) & Maksymalne stawki określa \textit{art.~6k ust.~2a ustawy o utrzymaniu czystości i porządku w gminach} jako procent przeciętnego miesięcznego dochodu rozporządzalnego na 1 osobę: 2\% od mieszkańca, 0,7\% za m\textsuperscript{3} zużytej wody, 0,08\% za m\textsuperscript{2} powierzchni lokalu, 5,6\% od gospodarstwa domowego. \\
+\bottomrule
+\end{tabularx}
+
+Temat leży na pograniczu administracji rządowej i samorządowej, gov.pl nie ma dla niego strony skierowanej do obywatela.
+
+\subsubsection*{Podsumowanie wyszukiwania}
+
+{\small
+\begin{tabularx}{\textwidth}{@{}YC{1.8cm}C{1.9cm}C{1.5cm}C{2cm}C{2cm}@{}}
+\toprule
+Sprawa & Kliknięcia & Czas & Trudność & Informacja znaleziona & Informacja aktualna \\
+\midrule
+Międzynarodowe prawo jazdy & 3 & ok. 1 min & 1 & Tak & Tak \\
+EKUZ & 6 & ok. 5 min & 3 & Tak & Tak \\
+Dofinansowanie PV (Mój Prąd) & 3 & ok. 2 min & 1 & Tak & Nie \\
+Maks. stawki za odpady & -- & ok. 10--20 min & 5 & Nie & -- \\
+\bottomrule
+\end{tabularx}
+}
+
+\textit{Skuteczność: 3/4 sprawy znalezione, ale tylko 2/4 z aktualną i wiarygodną odpowiedzią.} Nawigacja w serwisie jest zadowalająca, gdy sprawa jest „usługą” z jasną nazwą z kluczowymi słowami. Problem pojawia się, gdy temat nie pasuje do kategorii lub dotyczy informacji ogólnej (np. przepisy, stawki), a nie załatwienia sprawy.
+
+\subsection{Heurystyki Nielsena: które nie zostały spełnione}
+
+{\small
+\begin{tabularx}{\textwidth}{@{}C{0.5cm}L{3.4cm}L{2.1cm}Y@{}}
+\toprule
+\# & Heurystyka & Ocena & Argumentacja \\
+\midrule
+1 & Widoczność stanu systemu & Częściowo & Widoczna data ostatniej aktualizacji na każdej stronie usługi. Strona „Mój prąd” bez ostrzeżenia o zakończonym naborze (2022). \\
+2 & Zgodność z rzeczywistością & Niespełniona & EKUZ nie ma w kategorii \textit{Zdrowie i ubezpieczenie społeczne}, tylko w \textit{Wyjazdy i wypoczynek}. Użytkownik szuka „fotowoltaiki”, a szukana informacja znajduje się w programie „Mój prąd”. Strona o odpadach komunalnych napisana dla gmin, nie dla mieszkańców. \\
+3 & Kontrola i swoboda użytkownika & Spełniona & Przycisk „Wyczyść” w wyszukiwarce. Możliwość powrotu do poprzednich wyników za pomocą strzałki „wstecz”. \\
+4 & Spójność i standardy & Niespełniona & Mieszane etykiety „usługa online” / „serwis informacyjny” dla tej samej sprawy. Duplikaty list. \\
+5 & Zapobieganie błędom & Niespełniona & Aktywny przycisk „Złóż wniosek” w zamkniętym programie „Mój prąd”: użytkownik może podjąć daremną próbę. \\
+6 & Rozpoznawanie zamiast przypominania & Częściowo & Katalog pokazuje wszystkie usługi jednocześnie. Bardzo długa lista bez filtrowania, a użytkownik musi znać nazwę programu, żeby rozpoznać właściwy link. \\
+7 & Elastyczność i efektywność & Częściowo & Wyszukiwarka nie obsługuje zapytań w języku naturalnym, jednak potrafi listować wyniki na podstawie słów kluczowych. \\
+8 & Estetyka i minimalizm & Spełniona & Czysta, spójna szata graficzna i jednolity design. \\
+9 & Pomoc w rozpoznawaniu i naprawie błędów & Niespełniona & W przypadku wprowadzenia błędnego adresu URL następuje automatyczne przekierowanie na stronę główną. Po błędnym wyszukiwaniu brak informacji o możliwych alternatywach lub sugestiach. \\
+10 & Pomoc i dokumentacja & Spełniona & Podstawa prawna, kontakt do instytucji, data aktualnego stanu informacji. \\
+\bottomrule
+\end{tabularx}
+}
+
+\subsection{Porównanie z wynikami generatywnej AI}
+
+\subsubsection*{Metoda}
+
+Te same pytania zadałem narzędziu generatywnej AI (\textit{Claude, Anthropic}) w dwóch trybach:
+\begin{itemize}[leftmargin=*]
+  \item \textit{A: AI bez dostępu do sieci} (odpowiedź z wiedzy modelu);
+  \item \textit{B: AI z narzędziem do przeglądania WWW} (pobieranie stron gov.pl).
+\end{itemize}
+
+Dodatkowo poprosiłem AI o „ocenę serwisu gov.pl według 10 heurystyk Nielsena”.
+
+Wysłane prompty:
+\begin{enumerate}[leftmargin=*]
+  \item „Kto może uzyskać międzynarodowe prawo jazdy w Polsce, gdzie i ile to kosztuje?”
+  \item „Jak wyrobić kartę EKUZ?”
+  \item „Ile wynosi dofinansowanie do instalacji fotowoltaicznej z programu Mój Prąd?”
+  \item „Ile wynoszą maksymalne stawki opłat za odbiór odpadów komunalnych w Polsce?”
+  \item „Oceń użyteczność serwisu www.gov.pl według heurystyk Nielsena. Które nie są spełnione?”
+\end{enumerate}
+
+\subsubsection*{Porównanie odpowiedzi merytorycznych}
+
+{\footnotesize
+\begin{tabularx}{\textwidth}{@{}L{2.3cm}L{2.2cm}YYY@{}}
+\toprule
+Sprawa & Badanie ręczne (gov.pl) & AI -- tryb A (bez sieci) & AI -- tryb B (z siecią) & Wniosek \\
+\midrule
+Międzynarodowe prawo jazdy & 1 min, kompletnie & Poprawnie (starostwo, 35 zł, do 3 lat) & Poprawnie, z cytatem ze strony gov.pl & Pełna zgodność. Przy stabilnych przepisach AI jest szybsza. \\
+EKUZ & 5 min, kompletnie & Ogólnie poprawnie (bezpłatna, NFZ, IKP), ale wymienia ePUAP jako kanał. Nie zna zmiany od 1.01.2026. & Poprawnie, z uwzględnieniem zmiany z 2026 r. & Tryb A ryzykowny przy świeżych zmianach przepisów. \\
+Mój Prąd & 2 min; gov.pl podaje do 20 500 zł & Podaje kwoty z nowszej edycji, ale bez pewności co do stanu naboru & Wskazuje rozbieżność: gov.pl vs mojprad.gov.pl & AI z siecią wykryła niespójność, której pojedynczy użytkownik nie zauważy. Tryb A daje inne liczby niż oficjalny serwis, co obniża zaufanie do obu. \\
+Odpady & Nie znaleziono w gov.pl & Podaje zasadę „procent dochodu rozporządzalnego”, ale niespójne wartości procentowe (m.in. 1,1\% zamiast 2\% od mieszkańca) & Znajduje tekst ustawy (art.~6k) i komunikat GUS. Jednocześnie zaznacza, że części wyników nie może zweryfikować & AI dociera tam, gdzie gov.pl zawodzi, ale myli wartości liczbowe. Konieczna weryfikacja w źródle. \\
+\bottomrule
+\end{tabularx}
+}
+
+\subsubsection*{Wnioski z porównania}
+
+Zapytana o heurystyki Nielsena, AI wymieniła ogólne problemy: rozbudowaną strukturę, trudną wyszukiwarkę, urzędowy język i długie strony. Ocena AI i moja pokrywają się tylko częściowo. Obie wskazują problem z kategoryzacją i językiem serwisu oraz ograniczenia wyszukiwarki.
+
+AI bez dostępu do serwisu nie wykryła żadnego z naruszeń, które oceniłem jako niespełnione z powodu konkretnych błędów: aktywnego przycisku „Złóż wniosek” w zakończonym programie i niespójnych etykiet „usługa online” / „serwis informacyjny”. Jej ocena brzmi wiarygodnie, ale jest ogólna i nie opiera się na dowodach. Bez sprawdzenia serwisu nie może zastąpić oceny heurystycznej.
+
+W sprawach, w których przepisy się nie zmieniają, AI podaje poprawną odpowiedź szybciej niż ręczne szukanie w serwisie. W sprawach, które niedawno się zmieniły, odpowiedź z samej wiedzy modelu bywa nieaktualna.
+
+Przy stawkach za odpady, jedynej sprawie, której nie udało się znaleźć w gov.pl, AI podała odpowiedź w obu trybach. Bez dostępu do sieci podała jednak niespójne wartości procentowe. Z dostępem do sieci dotarła do tekstu ustawy, ale sama zaznaczyła, że części wyników nie może zweryfikować. AI uzupełnia więc lukę w serwisie, ale w sprawach urzędowych jej odpowiedź trzeba sprawdzić bezpośrednio w źródle. AI dobrze sprawdza się jako uzupełnienie badania, a nie jego zamiennik. Końcowa ocena doświadczenia użytkownika, czyli zrozumienie i interpretacja treści, a także odbiór wizualny nadal wymaga opinii człowieka.
+
+% =====================================================================
+\newpage
+\section{Zadanie 3 -- Porównanie serwisów internetowych trzech lotnisk}
+
+{\small
+\begin{tabularx}{\textwidth}{@{}L{2.2cm}L{4.6cm}YC{1.4cm}@{}}
+\toprule
+Region & Lotnisko & Serwis & Języki \\
+\midrule
+Polska & Lotnisko Chopina w Warszawie (WAW) & \url{https://www.lotnisko-chopina.pl} & PL, EN \\
+Europa & Flughafen München (MUC) & \url{https://www.munich-airport.de} & DE, EN \\
+Poza Europą & Singapore Changi Airport (SIN) & \url{https://www.changiairport.com} & EN, ZH \\
+\bottomrule
+\end{tabularx}
+}
+
+Przeglądarka desktopowa, start zawsze od strony głównej.
+
+\subsection{Porównanie interfejsów}
+
+\subsubsection*{Warszawa-Chopin}
+\begin{itemize}[leftmargin=*]
+  \item Menu główne: \textit{Loty}, \textit{O nas}, \textit{Dojazd} (\textit{Transportation}), \textit{Na lotnisku}, \textit{B2B}, \textit{Zarezerwuj}. Rozwijane menu wielopoziomowe, np. \textit{Na lotnisku $\rightarrow$ Przed lotem $\rightarrow$ Asysta PRM}.
+  \item Strona główna: karuzela promocji (VIP Line, Valet Parking, Fast Track 70+, parking express itd.), wyszukiwarka lotów (przyloty/odloty), karta rezerwacji parkingu, kafelki szybkiego dostępu, numer infolinii 24/7.
+  \item Wrażenie: zorientowany na podróżującego, ale strona główna jest zdominowana przez sprzedaż usług dodatkowych. Karuzela stanowi największy element interfejsu.
+\end{itemize}
+
+\subsubsection*{Monachium}
+\begin{itemize}[leftmargin=*]
+  \item Menu główne: tylko 4 pozycje: \textit{Flights}, \textit{Transport \& Directions}, \textit{Parking}, \textit{At the airport}. Osobne przełączenie grupy odbiorców: \textit{Passengers \& Visitors} / \textit{Company \& Business} / \textit{Careers}.
+  \item Strona główna: rozbudowana wyszukiwarka lotów (zakładki przyloty/odloty/rozkład, filtry: data, przedział godzin, linia, nr lotu), skróty: \textit{Departure}, \textit{Arrival}, \textit{Parking}, \textit{Pick-up and drop-off}, \textit{Experience}, \textit{Accessible travel}. Rezerwacja parkingu z rabatem.
+  \item Wrażenie: najbardziej „zadaniowy” interfejs. Mało elementów, nazwy pozycji menu odpowiadają celom użytkownika.
+\end{itemize}
+
+\subsubsection*{Singapur-Changi}
+\begin{itemize}[leftmargin=*]
+  \item Menu główne: \textit{Fly}, \textit{At Changi}, \textit{Dine \& Shop}, \textit{Experience}, \textit{Happenings}, \textit{Changi Rewards}, \textit{App \& Help}. Logowanie, konto lojalnościowe.
+  \item Strona główna: wizerunkowa: hasło „Hello from Changi”, konkursy, promocje, przewodniki po miastach. Ciekawy element: selektor roli „I am: Arriving / Departing / Transiting / Visiting”, który zmienia panel przydatnych informacji. Pasek wyszukiwania lotów na stronie głównej.
+  \item Wrażenie: serwis traktuje lotnisko jako jeden z przystanków podróży. Informacje praktyczne są dobre, ale mniej eksponowane niż oferta handlowa.
+\end{itemize}
+
+\subsection{Łatwość dotarcia do informacji}
+\label{sec:klikniecia}
+
+Liczba kliknięć od strony głównej do strony z odpowiedzią (rozwinięcie menu po najechaniu kursorem nie jest liczone jako kliknięcie).
+
+{\footnotesize
+\begin{tabularx}{\textwidth}{@{}L{2cm}YC{0.6cm}YC{0.6cm}YC{0.6cm}@{}}
+\toprule
+Informacja & WAW: ścieżka & kl. & MUC: ścieżka & kl. & SIN: ścieżka & kl. \\
+\midrule
+Parking & „Zarezerwuj” (parking) -- widżet na stronie głównej & 1 & \textit{Parking} -- widżet na stronie głównej & 1 & \textit{At Changi $\rightarrow$ Facilities \& Services $\rightarrow$ Airport Parking} & 3 \\
+Wynajem samochodu & Skrót „Rent a Car” na stronie głównej & 1 & \textit{Transport \& Directions $\rightarrow$ Rental Cars} & 1 & \textit{At Changi $\rightarrow$ Transport and Directions $\rightarrow$ Leaving the Airport} (sekcja) & 2 \\
+Taksówki & \textit{Dojazd $\rightarrow$ (sekcja) Taxi} & 1 & \textit{Transport \& Directions $\rightarrow$ Taxi service point} & 2 & \textit{Transport and Directions $\rightarrow$ Leaving the Airport} (sekcja) & 2 \\
+Komunikacja zbiorowa & \textit{Dojazd $\rightarrow$ (sekcja) Komunikacja miejska} & 1 & \textit{Transport \& Directions} $\rightarrow$ FAQ o S-Bahn & 2 & \textit{Transport and Directions $\rightarrow$ Leaving / Getting to Changi} & 2 \\
+Osoby z niepełno\-sprawnościami & \textit{Na lotnisku $\rightarrow$ Przed lotem $\rightarrow$ Asysta PRM} & 1 & Skrót „Accessible travel” na stronie głównej & 1 & \textit{At Changi $\rightarrow$ Special Assistance} & 1 \\
+\bottomrule
+\end{tabularx}
+}
+
+\subsection{Kompletność informacji}
+\label{sec:kompletnosc}
+
+Każdy temat oceniono listą 5 kryteriów. Każde kryterium dostaje 1 pkt (informacja jest), 0,5 pkt (częściowo) albo 0 pkt (brak), więc temat może uzyskać od 0 do 5 pkt, a cały serwis od 0 do 25 pkt.
+
+Kryteria dla parkingu, wynajmu, taksówek i komunikacji zbiorowej:
+\begin{itemize}[leftmargin=*]
+  \item cena: konkretne kwoty lub cennik;
+  \item lokalizacja/mapa: mapa albo dokładne miejsce (terminal, poziom, strefa); ogólny opis to 0,5;
+  \item godziny/rozkład: godziny otwarcia, informacja o działaniu 24 h, rozkład lub częstotliwość;
+  \item kontakt: telefon lub e-mail do usługodawcy;
+  \item działanie online: rezerwacja, link do rozkładu, aplikacja.
+\end{itemize}
+
+Kryteria dla osób z niepełnosprawnościami: jak i kiedy zamówić asystę, punkty przywołania pomocy, kontakt, udogodnienia w terminalu, parking lub podjazd dla osób z niepełnosprawnościami.
+
+\subsubsection*{Parking}
+
+{\small
+\begin{tabularx}{\textwidth}{@{}L{2.8cm}YYY@{}}
+\toprule
+Kryterium & WAW & MUC & SIN \\
+\midrule
+Cena & 1 (osobna strona z cennikiem) & 1 (cennik, PDF 2026) & 1 (stawki dla każdego parkingu) \\
+Lokalizacja/mapa & 1 (mapy parkingów z czasem dojścia) & 0,5 (tylko planer trasy, brak mapy) & 1 (lista parkingów dla każdego terminalu z poziomami) \\
+Godziny & 0,5 (podane tylko dla części parkingów) & 0 & 1 (wszystkie 24 h) \\
+Kontakt & 1 & 1 & 1 \\
+Działanie online & 1 (rezerwacja) & 1 (rezerwacja z darmową anulacją) & 0 (brak rezerwacji, tylko promocje w aplikacji) \\
+\midrule
+Razem & 4,5 & 3,5 & 4 \\
+\bottomrule
+\end{tabularx}
+}
+
+Uwaga: SIN nie podaje informacji o miejscach dla osób z niepełnosprawnościami.
+
+\subsubsection*{Wynajem samochodu}
+
+{\small
+\begin{tabularx}{\textwidth}{@{}L{2.8cm}YYY@{}}
+\toprule
+Kryterium & WAW & MUC & SIN \\
+\midrule
+Cena & 0 & 0 & 0 \\
+Lokalizacja/mapa & 1 (hala przylotów, parking P34) & 1 (MAC, poziom 03) & 0,5 (ogólnie: „w halach przylotów”) \\
+Godziny & 0 & 1 (godziny każdej z 5 firm) & 0 \\
+Kontakt & 1 (telefony 13 firm) & 1 (telefony 5 firm) & 0 (brak nawet listy firm) \\
+Działanie online & 0,5 (linki do stron firm, rezerwacja bezpośrednio tylko dla jednej) & 1 (linki do rezerwacji) & 1 (link do rezerwacji) \\
+\midrule
+Razem & 2,5 & 4 & 1,5 \\
+\bottomrule
+\end{tabularx}
+}
+
+\subsubsection*{Taksówki}
+
+{\small
+\begin{tabularx}{\textwidth}{@{}L{2.8cm}YYY@{}}
+\toprule
+Kryterium & WAW & MUC & SIN \\
+\midrule
+Cena & 1 (ok. 50 zł do centrum) & 0 & 1 (S\$25--45 i wszystkie dopłaty) \\
+Lokalizacja/mapa & 1 (mapa i zdjęcia postoju) & 0,5 (opis sprzeczny: poziom 03 vs 00) & 1 (postoje w każdym terminalu) \\
+Godziny & 0 & 0 & 1 (taksówki 24 h) \\
+Kontakt & 1 (telefon iTaxi) & 0,5 (tylko link do przewoźnika) & 0 \\
+Działanie online & 1 (Uber, Bolt, kioski Uber) & 0 & 1 (aplikacje przewozowe, rezerwacja transferu) \\
+\midrule
+Razem & 4 & 1 & 4 \\
+\bottomrule
+\end{tabularx}
+}
+
+\subsubsection*{Komunikacja zbiorowa}
+
+{\small
+\begin{tabularx}{\textwidth}{@{}L{2.8cm}YYY@{}}
+\toprule
+Kryterium & WAW & MUC & SIN \\
+\midrule
+Cena & 0,5 (tylko porada „kup bilet 75-min”) & 1 (cena biletu S-Bahn w FAQ) & 0,5 (tylko metody płatności, bez kwot) \\
+Lokalizacja/mapa & 1 (mapy przystanków) & 1 (lokalizacja peronu w FAQ) & 1 (przystanki dla każdego terminalu, trasa MRT z przesiadką) \\
+Rozkład & 1 (linki do rozkładów) & 1 (częstotliwość S-Bahn w FAQ) & 1 (pierwszy i ostatni pociąg) \\
+Kontakt & 0 & 0 & 0 \\
+Działanie online & 1 (linki do rozkładów) & 0,5 (planer trasy, ale tylko do lotniska) & 0 \\
+\midrule
+Razem & 3,5 & 3,5 & 2,5 \\
+\bottomrule
+\end{tabularx}
+}
+
+\subsubsection*{Osoby z niepełnosprawnościami}
+
+{\small
+\begin{tabularx}{\textwidth}{@{}L{2.8cm}YYY@{}}
+\toprule
+Kryterium & WAW & MUC & SIN \\
+\midrule
+Zamówienie asysty & 1 (48 h przez przewoźnika) & 1 (48 h, kody WCHR/WCHS/WCHC) & 1 (przez przewoźnika, Care Ambassadors na miejscu) \\
+Punkty przywołania pomocy & 1 (5 słupków SOS z lokalizacją) & 0,5 (Mobility Service Points bez opisu lokalizacji) & 0,5 (Care Ambassadors i punkty informacji, bez stałych punktów) \\
+Kontakt & 1 (infolinia 24/7, ścieżka reklamacji) & 0,5 (tylko ogólny kontakt i FAQ) & 0,5 (odesłanie do kontaktu z przewoźnikiem) \\
+Udogodnienia w terminalu & 1 (Komfortka, TOTUPOINT, tłumacz PJM, smycz ze słonecznikiem) & 1 (Changing Places, Fastlane, Auracast, program Sunflower) & 0,5 (tylko pasy specjalne na kontroli) \\
+Parking/podjazd & 1 (miejsca na parkingach, Kiss\&Fly do 20 min) & 1 (miejsca we wszystkich garażach, 50\% zniżki) & 0 \\
+\midrule
+Razem & 5 & 4 & 2,5 \\
+\bottomrule
+\end{tabularx}
+}
+
+Uwaga: materiały PDF dla osób z niepełnosprawnościami w serwisie MUC pochodzą z 2016 r.
+
+\subsubsection*{Podsumowanie kompletności}
+
+{\small
+\begin{tabularx}{\textwidth}{@{}YC{2cm}C{2cm}C{2cm}@{}}
+\toprule
+Temat & WAW & MUC & SIN \\
+\midrule
+Parking & 4,5 & 3,5 & 4 \\
+Wynajem samochodu & 2,5 & 4 & 1,5 \\
+Taksówki & 4 & 1 & 4 \\
+Komunikacja zbiorowa & 3,5 & 3,5 & 2,5 \\
+Osoby z niepełnosprawnościami & 5 & 4 & 2,5 \\
+\midrule
+Suma (/25) & 19,5 & 16 & 14,5 \\
+\bottomrule
+\end{tabularx}
+}
+
+\subsection{Wynik łączny}
+
+\subsubsection*{Zaproponowane obiektywne miary}
+
+{\footnotesize
+\begin{tabularx}{\textwidth}{@{}C{0.6cm}L{3.2cm}YL{3.4cm}@{}}
+\toprule
+\# & Miara & Definicja / sposób pomiaru & Dlaczego obiektywna \\
+\midrule
+M1 & Głębokość dostępu & Minimalna liczba kliknięć od strony głównej do informacji. Punktacja: 1 kl. = 5 pkt, 2 = 4, 3 = 3, 4 = 2, $\geq$5 = 1, brak = 0 & Policzalna, powtarzalna \\
+M2 & Indeks zawartości & Suma punktów z listy kontrolnej (pkt~\ref{sec:kompletnosc}): 0--5 na temat, 0--25 na serwis & Lista kryteriów ustalona przed badaniem \\
+M3 & Dostępność techniczna & Liczba błędów WCAG wg narzędzi automatycznych (Lighthouse, WAVE, axe), \% obrazów bez \texttt{alt} & Narzędzia automatyczne \\
+M4 & Wydajność & Core Web Vitals (LCP, INP, CLS) z PageSpeed Insights; TTFB & Narzędzia automatyczne \\
+\bottomrule
+\end{tabularx}
+}
+
+M1 i M2 wynikają z powyższych tabel, a M3 i M4 z pomiarów technicznych stron głównych.
+
+\subsubsection*{Zestawienie}
+
+Wagi: dostępność informacji (M1) 40\%, kompletność (M2) 40\%, jakość techniczna (M3/M4) 20\%.
+
+{\small
+\begin{tabularx}{\textwidth}{@{}YC{2.2cm}C{2.2cm}C{2.2cm}@{}}
+\toprule
+Miara & WAW & MUC & SIN \\
+\midrule
+M1: głębokość dostępu (/25) & 25 & 23 & 20 \\
+M2: kompletność (/25) & 19,5 & 16 & 14,5 \\
+M3/M4: jakość techniczna (/5) & 2 & 5 & 4 \\
+\midrule
+Wynik ważony (/100) & 79,2 & 82,4 & 71,2 \\
+\bottomrule
+\end{tabularx}
+}
+
+M1 wynika z tabeli w punkcie~\ref{sec:klikniecia}: WAW 5 $\times$ 1 kliknięcie = 25 pkt; MUC 3 $\times$ 1 kliknięcie i 2 $\times$ 2 kliknięcia = 23 pkt; SIN 1 $\times$ 1, 3 $\times$ 2 i 1 $\times$ 3 kliknięcia = 20 pkt.
+
+Ocena M3/M4 wynika z pomiaru stron głównych (statyczny HTML pobrany narzędziem \texttt{curl}, pomiar jednorazowy z Polski):
+
+{\small
+\begin{tabularx}{\textwidth}{@{}YC{2.6cm}C{2.6cm}C{2.6cm}@{}}
+\toprule
+Pomiar & WAW & MUC & SIN \\
+\midrule
+Obrazy bez atrybutu \texttt{alt} & 85 z 133 (64\%) & 0 z 34 & 0 z 104 \\
+Rozmiar HTML & 166 kB & 110 kB & 283 kB \\
+Czas do pierwszego bajtu (TTFB) & 0,58 s & 0,37 s & 0,48 s \\
+\bottomrule
+\end{tabularx}
+}
+
+Każdy serwis zaczyna od 5 pkt. Odejmowane są 3 pkt, gdy ponad połowa obrazów nie ma tekstu alternatywnego (naruszenie WCAG 2.1, kryterium 1.1.1), i 1 pkt za największy rozmiar strony. Daje to WAW 2 pkt, MUC 5 pkt i SIN 4 pkt. Core Web Vitals nie były mierzone, więc M4 jest uwzględniona tylko przez rozmiar strony.
+
+Obliczenie:
+\[
+  W = \frac{M1}{25}\cdot 40 + \frac{M2}{25}\cdot 40 + \frac{M3/M4}{5}\cdot 20
+\]
+
+\subsection{Wnioski}
+
+Najwyższy wynik łączny ma serwis Monachium (82,4 pkt). Ma prostą nawigację, skrót do informacji dla osób z niepełnosprawnościami na stronie głównej i najlepszy wynik techniczny (wszystkie obrazy z tekstem alternatywnym). Przewagę daje mu jednak głównie jakość techniczna, bo w dostępności i kompletności informacji wypada gorzej niż Warszawa. Słabe punkty to strona taksówek i informacje o S-Bahn ukryte w FAQ.
+
+Warszawa-Chopin (79,2 pkt) ma najlepszą dostępność informacji i najbardziej kompletne treści: wszystko o dojeździe jest na jednej stronie, a informacje dla osób z niepełnosprawnościami są czytelne. Wynik obniża strona główna zdominowana przez karuzelę promocji.
+
+Changi (71,2 pkt) ma najdokładniejsze informacje o taksówkach i rozkładzie jazdy transportu publicznego oraz innowacyjne menu wyboru ról na stronie głównej. Słabo wypadają jednak wynajem samochodów i informacje dla osób z niepełnosprawnościami, a parking jest schowany w „katalogu usług”. Informacje praktyczne są mniej eksponowane niż oferta handlowa.
+
+Cechy wspólne: szybki dostęp do parkingu, wydzielona sekcja dla osób z niepełnosprawnościami, wyszukiwarka witryny. Wspólny problem: żaden serwis nie zbiera wszystkich opcji dojazdu z cenami i czasem przejazdu w jednej tabeli porównawczej („do centrum: pociąg 30 min / X zł, taxi 25 min / Y zł\dots”). To byłby najprostszy sposób na poprawę użyteczności we wszystkich trzech serwisach.
+
+% =====================================================================
+\newpage
+\section{Zadanie 4 -- Temat projektu grupowego}
+
+Skład grupy: Mateusz Gawłowski, Filip Zmyślony.
+
+Temat projektu: aplikacja mobilna „Handy Garage”.
+
+Cel projektu: Chcemy rozwiązać problem rozproszonych informacji o aktualnym stanie i kosztach utrzymania samochodu oraz kluczowych terminach takich jak przegląd techniczny, ubezpieczenie OC, wymiana oleju i opon, dotyczący grupy prywatnych właścicieli samochodów, którzy samodzielnie dbają o swoje auto i nie prowadzą żadnej dokumentacji jego obsługi, po to, aby mogli łatwo kontrolować wydatki oraz mieć pełną historię serwisową pojazdu.
+
+\end{document}

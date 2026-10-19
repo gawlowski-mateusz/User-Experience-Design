@@ -1,0 +1,18 @@
+\babel@toc {polish}{}\relax 
+\contentsline {section}{Cel i zakres ćwiczenia}{2}{section*.2}%
+\contentsline {section}{\numberline {1}Zadanie 1 -- Poznawanie nowej aplikacji}{2}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Wybór aplikacji}{2}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Oczekiwana funkcjonalność}{2}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Przykładowe zadania}{2}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4}Proces nauki i emocje}{3}{subsection.1.4}%
+\contentsline {section}{\numberline {2}Zadanie 2 -- Ocena użyteczności serwisu www.gov.pl}{4}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Wyszukiwanie informacji o sprawach urzędowych}{4}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Heurystyki Nielsena: które nie zostały spełnione}{6}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Porównanie z wynikami generatywnej AI}{6}{subsection.2.3}%
+\contentsline {section}{\numberline {3}Zadanie 3 -- Porównanie serwisów internetowych trzech lotnisk}{8}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Porównanie interfejsów}{8}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Łatwość dotarcia do informacji}{9}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Kompletność informacji}{9}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Wynik łączny}{12}{subsection.3.4}%
+\contentsline {subsection}{\numberline {3.5}Wnioski}{12}{subsection.3.5}%
+\contentsline {section}{\numberline {4}Zadanie 4 -- Temat projektu grupowego}{14}{section.4}%
